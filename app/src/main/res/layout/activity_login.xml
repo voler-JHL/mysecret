@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:id="@+id/phone_num"
+        android:inputType="phone"
+        android:textSize="30px"
+        android:background="@android:color/transparent"
+        android:hint="请输入手机号"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginLeft="44px"
+        android:layout_marginRight="30px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="42px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_height="1px"
+        android:background="#999999"
+        />
+    <LinearLayout
+        android:layout_marginTop="42px"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/password"
+            android:hint="请输入6位短信验证码"
+            android:textSize="30px"
+            android:maxLength="6"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:digits="0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ"
+            android:inputType="number"
+            android:background="@android:color/transparent"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:layout_marginLeft="44px"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/send_code"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="10px"
+            android:textSize="30px"
+            android:layout_marginRight="50px"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="发送"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="42px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_height="1px"
+        android:background="#999"
+        />
+
+
+    <TextView
+        android:textSize="30px"
+        android:id="@+id/login"
+        android:text="登录"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="40px"
+        android:layout_marginLeft="30px"
+        android:layout_marginBottom="250px"
+        android:layout_marginRight="30px"
+        android:background="#5ec969"
+        android:layout_width="690px"
+        android:layout_height="90px" />
+</LinearLayout>
