@@ -30,15 +30,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- 富媒体需要声明的权限 -->
-    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
+    <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
 
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/secret"
         android:label="@string/app_name"
+        android:manageSpaceActivity=".mvp.ui.activity.ManageSpaceActivity"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".activity.SplashActivity">
@@ -48,12 +49,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MainActivity"/>
-        <activity android:name=".activity.FakeMainActivity"/>
-        <activity android:name=".activity.RealMainActivity"/>
-        <activity android:name=".activity.EvaluationActivity"/>
-        <activity android:name=".activity.DetaActivity"/>
-        <activity android:name=".activity.ImageSwitcherActivity"/>
+        <activity
+            android:name=".mvp.ui.activity.ManageSpaceActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.FakeMainActivity" />
+        <activity android:name=".activity.RealMainActivity" />
+        <activity android:name=".activity.EvaluationActivity" />
+        <activity android:name=".activity.DetaActivity" />
+        <activity android:name=".activity.ImageSwitcherActivity" />
     </application>
 
 </manifest>
