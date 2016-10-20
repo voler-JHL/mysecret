@@ -5,9 +5,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.voler.myapplication.R;
+import com.voler.myapplication.util.AES;
+import com.voler.myapplication.util.StringUtil;
 
 /**
  * 妈妈生活圈
@@ -27,6 +31,25 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }.start();
+        String password="123456";
+        String seed="123456";
+        String encryptAES = null;
+        AES.test1();
+        try {
+            encryptAES = StringUtil.encryptAES(seed, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, encryptAES,Toast.LENGTH_SHORT).show();
+        String decryptAES=null;
+        try {
+            Log.i("-----------", "onCreate: ");
+            decryptAES = StringUtil.decryptAES(seed, encryptAES);
+            Log.i("-----------", decryptAES);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Toast.makeText(this, decryptAES,Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -47,4 +47,5 @@ dependencies {
     provided rootProject.ext.dependencies["javax.annotation"]
     compile project(':arms')
     compile rootProject.ext.dependencies["paginate"]
+//    compile project(':autolayout')
 }
