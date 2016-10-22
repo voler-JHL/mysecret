@@ -42,7 +42,7 @@
         android:manageSpaceActivity=".mvp.ui.activity.ManageSpaceActivity"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".mvp.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -52,9 +52,13 @@
         <activity
             android:name=".mvp.ui.activity.ManageSpaceActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".mvp.ui.activity.RegisterActivity" />
+        <activity android:name=".mvp.ui.activity.LoginActivity" />
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".mvp.ui.activity.MainActivity" />
         <activity android:name=".activity.FakeMainActivity" />
-        <activity android:name=".activity.RealMainActivity" />
+        <activity android:name=".mvp.ui.activity.RealMainActivity" />
         <activity android:name=".activity.EvaluationActivity" />
         <activity android:name=".activity.DetaActivity" />
         <activity android:name=".activity.ImageSwitcherActivity" />
