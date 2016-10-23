@@ -1,5 +1,6 @@
 package com.voler.myapplication.mvp.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.jess.arms.utils.DataHelper;
+import com.jess.arms.utils.UiUtils;
 import com.voler.myapplication.R;
 import com.voler.myapplication.util.StringUtil;
 
@@ -24,7 +26,6 @@ import static com.voler.myapplication.util.StringUtil.sha2;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String salt="secret";
 
     @Bind(R.id.et_password)
     EditText etPassword;
@@ -41,8 +42,12 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.tv_login)
     public void onClick() {
         String password = etPassword.getText().toString().trim();
-        String myPassword = StringUtil.sha2(StringUtil.sha2(password) + sha2(password + salt));
-        DataHelper.SetStringSF(this,"password",myPassword);
-
+        String myPassword = StringUtil.sha2(StringUtil.sha2(password) + sha2(password + StringUtil.salt));
+        if (myPassword.equals(DataHelper.getStringSF(this, "password"))) {
+            Intent intent = new Intent(this, RealMainActivity.class);
+            startActivity(intent);
+        }else {
+            UiUtils.makeText("密码错误");
+        }
     }
 }

@@ -1,4 +1,5 @@
-package com.voler.myapplication.activity;
+package com.voler.myapplication.mvp.ui.activity;
+
 
 import android.content.Intent;
 import android.os.Build;
@@ -9,10 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.jess.arms.utils.DataHelper;
 import com.voler.myapplication.R;
 import com.voler.myapplication.util.AES;
 import com.voler.myapplication.util.StringUtil;
-
 /**
  * 妈妈生活圈
  * 三尺春光驱我寒，一生戎马为长安 -- 韩经录
@@ -27,12 +28,17 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 SystemClock.sleep(2500);
-                startActivity(new Intent(SplashActivity.this, EvaluationActivity.class));
+                if ("1".equals(DataHelper.getStringSF(SplashActivity.this, "is_first"))) {
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                } else {
+                    DataHelper.SetStringSF(SplashActivity.this, "is_first", "1");
+                    startActivity(new Intent(SplashActivity.this, RegisterActivity.class));
+                }
                 finish();
             }
         }.start();
-        String password="123456";
-        String seed="123456";
+        String password = "123456";
+        String seed = "123456";
         String encryptAES = null;
         AES.test1();
         try {
@@ -40,8 +46,8 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Toast.makeText(this, encryptAES,Toast.LENGTH_SHORT).show();
-        String decryptAES=null;
+        Toast.makeText(this, encryptAES, Toast.LENGTH_SHORT).show();
+        String decryptAES = null;
         try {
             Log.i("-----------", "onCreate: ");
             decryptAES = StringUtil.decryptAES(seed, encryptAES);
@@ -49,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Toast.makeText(this, decryptAES,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, decryptAES, Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -19,8 +19,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class StringUtil {
 
+    public static final String salt = "secret";
+
     /**
      * sha256加密
+     *
      * @param string 原密码
      * @return
      */
@@ -31,7 +34,7 @@ public class StringUtil {
         MessageDigest md5;
         try {
             md5 = MessageDigest.getInstance("sha-256");
-            byte[] bytes = md5.digest((string ).getBytes());
+            byte[] bytes = md5.digest((string).getBytes());
             String result = "";
             for (byte b : bytes) {
                 String temp = Integer.toHexString(b & 0xff);
@@ -50,6 +53,7 @@ public class StringUtil {
 
     /**
      * AES对称加密
+     *
      * @param seed 密匙
      * @param body 原密码
      * @return
@@ -62,8 +66,9 @@ public class StringUtil {
     }
 
     /**
-     *AES解密
-     * @param seed 密匙
+     * AES解密
+     *
+     * @param seed      密匙
      * @param encrypted 加密密码
      * @return
      * @throws Exception
@@ -104,17 +109,17 @@ public class StringUtil {
 
 
     public static byte[] toByte(String hexString) {
-        int len = hexString.length()/2;
+        int len = hexString.length() / 2;
         byte[] result = new byte[len];
         for (int i = 0; i < len; i++)
-            result[i] = Integer.valueOf(hexString.substring(2*i, 2*i+2), 16).byteValue();
+            result[i] = Integer.valueOf(hexString.substring(2 * i, 2 * i + 2), 16).byteValue();
         return result;
     }
 
     public static String toHex(byte[] buf) {
         if (buf == null)
             return "";
-        StringBuffer result = new StringBuffer(2*buf.length);
+        StringBuffer result = new StringBuffer(2 * buf.length);
         for (int i = 0; i < buf.length; i++) {
             appendHex(result, buf[i]);
         }
@@ -122,7 +127,8 @@ public class StringUtil {
     }
 
     private final static String HEX = "0123456789ABCDEF";
+
     private static void appendHex(StringBuffer sb, byte b) {
-        sb.append(HEX.charAt((b>>4)&0x0f)).append(HEX.charAt(b&0x0f));
+        sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
 }
