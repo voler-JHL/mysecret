@@ -1,4 +1,4 @@
-package com.voler.myapplication.activity;
+package com.voler.myapplication.mvp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.voler.myapplication.R;
+import com.voler.myapplication.activity.DetaActivity;
+import com.voler.myapplication.activity.DetailActivity;
 import com.voler.myapplication.adapter.FakeAdapter;
 
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class FakeMainActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Intent intent=new Intent(this,DetaActivity.class);
+        Intent intent=new Intent(this,DetailActivity.class);
         intent.putExtra("","");
         startActivity(intent);
     }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="20px"
         android:gravity="center"
-        android:textSize="22sp"
+        android:textSize="38px"
         android:textColor="@color/title"
         android:text="详情"/>
     <TextView
@@ -17,29 +17,31 @@
         android:background="@color/gray_line"/>
     <ImageView
         android:id="@+id/iv_avatar_big"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:layout_marginTop="20px"
+        android:src="@mipmap/secret"
+        android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"/>
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
+        android:layout_marginTop="40px"
+        android:padding="30px"
         android:text="你好"
-        android:textSize="20sp"
+        android:textSize="36px"
         android:textColor="@color/black"/>
     <TextView
         android:id="@+id/tv_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:padding="15dp"
+        android:layout_marginTop="35px"
+        android:padding="28px"
         android:text="hello"
-        android:textSize="20sp"
+        android:textSize="36px"
         android:textColor="@color/black"/>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

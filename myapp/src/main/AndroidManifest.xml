@@ -49,6 +49,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="design_width"
+            android:value="768"></meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1280"></meta-data>
+
         <activity
             android:name=".mvp.ui.activity.ManageSpaceActivity"
             android:screenOrientation="portrait" />
@@ -57,7 +65,7 @@
         <activity android:name=".mvp.ui.activity.LoginActivity" />
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".mvp.ui.activity.MainActivity" />
-        <activity android:name=".activity.FakeMainActivity" />
+        <activity android:name=".mvp.ui.activity.FakeMainActivity" />
         <activity android:name=".mvp.ui.activity.RealMainActivity" />
         <activity android:name=".activity.EvaluationActivity" />
         <activity android:name=".activity.DetaActivity" />

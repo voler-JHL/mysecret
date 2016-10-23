@@ -32,7 +32,7 @@ public class DetaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fake_main);
+        setContentView(R.layout.activity_date);
         ButterKnife.bind(this);
 
         Calendar calendar = Calendar.getInstance();
