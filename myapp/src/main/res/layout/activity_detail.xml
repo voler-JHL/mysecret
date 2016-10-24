@@ -23,18 +23,19 @@
         android:src="@mipmap/secret"
         android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal"/>
-    <TextView
-        android:id="@+id/tv_name"
+    <EditText
+        android:id="@+id/et_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="40px"
         android:padding="30px"
         android:text="你好"
+        android:hint=""
         android:textSize="36px"
         android:textColor="@color/black"/>
-    <TextView
-        android:id="@+id/tv_pwd"
+    <EditText
+        android:id="@+id/et_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -43,5 +44,16 @@
         android:text="hello"
         android:textSize="36px"
         android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/tv_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/blue"
+        android:padding="20px"
+        android:layout_marginTop="70px"
+        android:textColor="@color/white"
+        android:text="修改"/>
 
 </com.zhy.autolayout.AutoLinearLayout>

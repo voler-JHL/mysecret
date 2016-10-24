@@ -110,20 +110,6 @@ public class UserActivity extends WEActivity<UserPresenter> implements UserContr
         mSwipeRefreshLayout.setRefreshing(false);
     }
 
-    @Override
-    public void showMessage(String message) {
-        UiUtils.SnackbarText(message);
-    }
-
-    @Override
-    public void launchActivity(Intent intent) {
-
-    }
-
-    @Override
-    public void killMyself() {
-
-    }
 
     @Override
     public void setAdapter(DefaultAdapter adapter) {

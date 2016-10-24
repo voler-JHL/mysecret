@@ -12,13 +12,69 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 
 /**
- * Created by zhiyicx on 2016/3/15.
+ * sp工具类
  */
 public class DataHelper {
     private static SharedPreferences mSharedPreferences;
     public static final String SP_NAME = "config";
+    private static final String SP_PASSWORD = "password";
+
+
+
+    /**
+     * 返回存在sharedPreferences的密码
+     *
+     * @param context
+     * @return
+     */
+    public static Map<String, ?> getAllPassword(Context context) {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
+        }
+        return mSharedPreferences.getAll();
+    }
+
+    /**
+     * 存储密码到sharedPreferences；
+     *
+     * @param key
+     * @param value
+     */
+    public static void SetPassword(Context context, String key, String value) {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
+        }
+        mSharedPreferences.edit().putString(key, value).commit();
+    }
+
+    /**
+     * 返回存在sharedPreferences的密码
+     *
+     * @param key
+     * @return
+     */
+    public static String getPassword(Context context, String key) {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
+        }
+        return mSharedPreferences.getString(key, null);
+    }
+
+    /**
+     * 清除某个密码
+     */
+    public static void removePassword(Context context, String key) {
+        if (mSharedPreferences == null) {
+            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
+        }
+        mSharedPreferences.edit().remove(key).commit();
+    }
+
+
+
 
     /**
      * 存储重要信息到sharedPreferences；
@@ -45,6 +101,7 @@ public class DataHelper {
         }
         return mSharedPreferences.getString(key, null);
     }
+
 
     /**
      * 存储重要信息到sharedPreferences；

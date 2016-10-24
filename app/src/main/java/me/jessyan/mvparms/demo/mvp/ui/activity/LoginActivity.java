@@ -60,20 +60,7 @@ public class LoginActivity extends WEActivity<LoginPersenter> implements LoginCo
 
     }
 
-    @Override
-    public void showMessage(String message) {
 
-    }
-
-    @Override
-    public void launchActivity(Intent intent) {
-
-    }
-
-    @Override
-    public void killMyself() {
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

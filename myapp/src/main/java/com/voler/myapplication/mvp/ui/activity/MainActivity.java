@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.voler.myapplication.R;
-import com.voler.myapplication.activity.FakeMainActivity;
 import com.voler.myapplication.activity.RealMainActivity;
 
 import butterknife.Bind;
