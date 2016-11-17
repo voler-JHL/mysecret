@@ -23,8 +23,11 @@ public interface CommonService {
     @GET("/users")
     Observable<List<User>> getUsers(@Query("since") int lastIdQueried, @Query("per_page") int perPage);
 
+    @Headers(HEADER_API_VERSION)
     @POST("login")
     Observable<Login> getLogin(@Path("login") String loginUrl,@Query("phoneNum") String phoneNum, @Query("code") String code, @Query("regType") String regType);
+
+
 
 
 

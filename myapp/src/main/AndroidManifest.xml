@@ -68,7 +68,7 @@
         <activity android:name=".mvp.ui.activity.FakeMainActivity" />
         <activity android:name=".mvp.ui.activity.RealMainActivity" />
         <activity android:name=".activity.EvaluationActivity" />
-        <activity android:name=".activity.DetaActivity" />
+        <activity android:name=".mvp.ui.activity.DetailActivity" />
         <activity android:name=".activity.ImageSwitcherActivity" />
     </application>
 

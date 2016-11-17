@@ -7,8 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.voler.myapplication.R;
+import com.voler.myapplication.util.AES;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.Bind;
 
@@ -27,14 +31,19 @@ public class FakeAdapter extends MyBaseAdapter {
     @Override
     protected View getMyView(int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder = ViewHolder.getViewHolder(mContext, convertView, parent, R.layout.item_fake, position);
-        ImageView iv_avatar = viewHolder.getView(R.id.iv_avatar);
         TextView tv_name = viewHolder.getView(R.id.tv_name);
+        TextView tv_account = viewHolder.getView(R.id.tv_account);
         TextView tv_password = viewHolder.getView(R.id.tv_password);
 
-        iv_avatar.setImageResource(R.drawable.avatar);
         Map.Entry<String, ?> entry = (Map.Entry<String, ?>) data.get(position);
         tv_name.setText(entry.getKey());
-        tv_password.setText((String) entry.getValue());
+        Set<String> value = (Set<String>) entry.getValue();
+        List<String> list=new ArrayList<>();
+        for (String str : value) {
+            list.add(str);
+        }
+        tv_account.setText(list.get(1));
+        tv_password.setText(AES.decode(list.get(0)));
         return viewHolder.getConverView();
     }
 }

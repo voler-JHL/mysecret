@@ -9,8 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.voler.myapplication.R;
-import com.voler.myapplication.activity.DetaActivity;
-import com.voler.myapplication.activity.DetailActivity;
 import com.voler.myapplication.adapter.FakeAdapter;
 
 import java.util.ArrayList;

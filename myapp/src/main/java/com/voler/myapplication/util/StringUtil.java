@@ -5,6 +5,9 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -131,4 +134,21 @@ public class StringUtil {
     private static void appendHex(StringBuffer sb, byte b) {
         sb.append(HEX.charAt((b >> 4) & 0x0f)).append(HEX.charAt(b & 0x0f));
     }
+
+
+    public static String noChineseFilter(String str) throws PatternSyntaxException {
+        // 只允许字母、数字、"-"、"_"和汉字
+        String regEx = "[\u4E00-\u9FA5]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("").trim();
+    }
+
+    public static String stringFilter(String str) throws PatternSyntaxException {
+        // 只允许字母、数字、"-"、"_"和汉字
+        String reg = "[^a-zA-Z0-9\u4E00-\u9FA5_]";
+        str = str.replaceAll(reg, "");
+        return str;
+    }
+
 }

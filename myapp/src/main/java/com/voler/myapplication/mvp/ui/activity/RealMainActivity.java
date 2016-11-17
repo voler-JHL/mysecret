@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.jess.arms.utils.DataHelper;
 import com.voler.myapplication.R;
-import com.voler.myapplication.activity.DetaActivity;
 import com.voler.myapplication.adapter.FakeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,23 +31,28 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
 
     @Bind(R.id.lv_fake)
     ListView lvFake;
-    @Bind(R.id.tv_add)
-    TextView tvAdd;
+    @Bind(R.id.tv_title)
+    TextView tvTitle;
+    @Bind(R.id.tv_right)
+    TextView tvRight;
     private List mList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fake_main);
+        setContentView(R.layout.activity_real_main);
         ButterKnife.bind(this);
+        tvTitle.setText("列表");
         FakeAdapter fakeAdapter = new FakeAdapter(this);
         lvFake.setAdapter(fakeAdapter);
         mList = new ArrayList();
         Map<String, ?> allPassword = DataHelper.getAllPassword(this);
         int i = 0;
         for (Map.Entry<String, ?> entry : allPassword.entrySet()) {
-            mList.add(i, entry);
-            i++;
+            if (entry.getValue() instanceof Set) {
+                mList.add(i, entry);
+                i++;
+            }
             System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
         }
         fakeAdapter.notifyDataSetChanged(1, mList);
@@ -57,12 +62,12 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, DetailActivity.class);
-        Map.Entry<String, ?> entry = (Map.Entry<String, ?>) mList.get(position);
+        Map.Entry<String, Map<String, String>> entry = (Map.Entry<String, Map<String, String>>) mList.get(position);
         intent.putExtra("name", entry.getKey());
         startActivity(intent);
     }
 
-    @OnClick(R.id.tv_add)
+    @OnClick(R.id.tv_right)
     public void onClick() {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("name", "");

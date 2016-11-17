@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.UiUtils;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, RealMainActivity.class);
             startActivity(intent);
         }else {
-            UiUtils.makeText("密码错误");
+            Toast.makeText(this,"密码错误",Toast.LENGTH_SHORT).show();
         }
     }
 }
