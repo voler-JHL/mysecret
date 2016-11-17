@@ -27,11 +27,11 @@ public class GuideFragment extends Fragment {
         int index = getArguments().getInt("index");
         Uri uri;
         if (index == 1) {
-            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide1);
+            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide4);
         } else if (index == 2) {
-            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide2);
+            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide5);
         } else {
-            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide3);
+            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide6);
         }
         /**播放视频**/
         customVideoView.playVideo(uri);
