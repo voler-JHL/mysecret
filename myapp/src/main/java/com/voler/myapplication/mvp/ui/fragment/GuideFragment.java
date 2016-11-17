@@ -31,7 +31,7 @@ public class GuideFragment extends Fragment {
         } else if (index == 2) {
             uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide2);
         } else {
-            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide1);
+            uri = Uri.parse("android.resource://" + getActivity().getPackageName() + "/" + R.raw.guide3);
         }
         /**播放视频**/
         customVideoView.playVideo(uri);
