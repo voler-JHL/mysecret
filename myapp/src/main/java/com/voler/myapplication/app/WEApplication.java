@@ -27,6 +27,7 @@ import timber.log.Timber;
  */
 public class WEApplication extends BaseApplication {
     private AppComponent mAppComponent;
+//    private static PasswordService passwordService=new PasswordService(this);
 
     @Override
     public void onCreate() {

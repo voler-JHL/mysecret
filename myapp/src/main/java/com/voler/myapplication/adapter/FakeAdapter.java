@@ -3,18 +3,11 @@ package com.voler.myapplication.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.voler.myapplication.R;
+import com.voler.myapplication.mvp.model.entity.PasswordEntity;
 import com.voler.myapplication.util.AES;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import butterknife.Bind;
 
 /**
  * 妈妈生活圈
@@ -35,15 +28,11 @@ public class FakeAdapter extends MyBaseAdapter {
         TextView tv_account = viewHolder.getView(R.id.tv_account);
         TextView tv_password = viewHolder.getView(R.id.tv_password);
 
-        Map.Entry<String, ?> entry = (Map.Entry<String, ?>) data.get(position);
-        tv_name.setText(entry.getKey());
-        Set<String> value = (Set<String>) entry.getValue();
-        List<String> list=new ArrayList<>();
-        for (String str : value) {
-            list.add(str);
-        }
-        tv_account.setText(list.get(1));
-        tv_password.setText(AES.decode(list.get(0)));
+        PasswordEntity passwordEntity = (PasswordEntity) data.get(position);
+
+        tv_name.setText(passwordEntity.getName());
+        tv_account.setText(passwordEntity.getAccount());
+        tv_password.setText(AES.decode(passwordEntity.getPwd()));
         return viewHolder.getConverView();
     }
 }

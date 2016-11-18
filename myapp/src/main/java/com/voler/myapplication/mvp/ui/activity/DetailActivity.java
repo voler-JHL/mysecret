@@ -14,7 +14,9 @@ import android.widget.Toast;
 
 import com.jess.arms.utils.DataHelper;
 import com.voler.myapplication.R;
+import com.voler.myapplication.db.PasswordService;
 import com.voler.myapplication.listener.OnActionViewClickListener;
+import com.voler.myapplication.mvp.model.entity.PasswordEntity;
 import com.voler.myapplication.util.AES;
 import com.voler.myapplication.util.StringUtil;
 
@@ -26,6 +28,9 @@ import java.util.Set;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.R.attr.password;
+import static android.R.id.list;
 
 /**
  * 妈妈生活圈
@@ -47,7 +52,7 @@ public class DetailActivity extends AppCompatActivity {
     @Bind(R.id.tv_right)
     TextView tvRight;
 
-    private String mName;
+    private String pid;
     private boolean isEdit = false;
 
     @Override
@@ -58,18 +63,15 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle.setText("详情");
         tvRight.setText("删除");
         Bundle extras = getIntent().getExtras();
-        mName = extras.getString("name");
-        if (mName == null || "".equals(mName)) {
+        pid = extras.getString("pid");
+        if (pid == null || "".equals(pid)) {
             setCanEdit();
         } else {
-            etName.setText(mName);
-            Set<String> password = DataHelper.getPassword(this, mName);
-            List<String> list = new ArrayList<>();
-            for (String str : password) {
-                list.add(str);
-            }
-            etAccount.setText(list.get(0));
-            etPwd.setText(AES.decode(list.get(1)));
+            PasswordService passwordService =  new PasswordService(this);
+            PasswordEntity passwordEntity = passwordService.find(pid);
+            etName.setText(passwordEntity.getName());
+            etAccount.setText(passwordEntity.getAccount());
+            etPwd.setText(AES.decode(passwordEntity.getPwd()));
         }
         etPwd.addTextChangedListener(new TextWatcher() {
             @Override
@@ -119,6 +121,7 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, "nfidjasf", Toast.LENGTH_SHORT).show();
         switch (view.getId()) {
             case R.id.tv_right:
+
                 DataHelper.removePassword(this, mName);
                 break;
             case R.id.tv_update:

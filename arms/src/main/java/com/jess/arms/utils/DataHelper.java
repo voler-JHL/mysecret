@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * sp工具类
@@ -26,18 +23,18 @@ public class DataHelper {
 
 
 
-    /**
-     * 返回存在sharedPreferences的密码
-     *
-     * @param context
-     * @return
-     */
-    public static Map<String, ?> getAllPassword(Context context) {
-        if (mSharedPreferences == null) {
-            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
-        }
-        return  mSharedPreferences.getAll();
-    }
+//    /**
+//     * 返回存在sharedPreferences的密码
+//     *
+//     * @param context
+//     * @return
+//     */
+//    public static Map<String, ?> getAllPassword(Context context) {
+//        if (mSharedPreferences == null) {
+//            mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
+//        }
+//        return  mSharedPreferences.getAll();
+//    }
 
     /**
      * 存储密码到sharedPreferences；
@@ -45,11 +42,11 @@ public class DataHelper {
      * @param key
      * @param value
      */
-    public static void setPassword(Context context, String key, Set<String> value) {
+    public static void setPassword(Context context, String key, String value) {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
         }
-        mSharedPreferences.edit().putStringSet(key,value).commit();
+        mSharedPreferences.edit().putString(key,value).commit();
     }
 
     /**
@@ -58,11 +55,11 @@ public class DataHelper {
      * @param key
      * @return
      */
-    public static Set<String> getPassword(Context context, String key) {
+    public static String getPassword(Context context, String key) {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_PASSWORD, Context.MODE_PRIVATE);
         }
-        return mSharedPreferences.getStringSet(key,null);
+        return mSharedPreferences.getString(key,"{}");
     }
 
     /**

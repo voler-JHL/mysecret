@@ -9,14 +9,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.jess.arms.utils.DataHelper;
 import com.voler.myapplication.R;
 import com.voler.myapplication.adapter.FakeAdapter;
+import com.voler.myapplication.db.PasswordService;
+import com.voler.myapplication.mvp.model.entity.PasswordEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,9 +34,7 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
     ListView lvFake;
     @Bind(R.id.tv_title)
     TextView tvTitle;
-    @Bind(R.id.tv_right)
-    TextView tvRight;
-    private List mList;
+    private  List<PasswordEntity> mList = new ArrayList();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,16 +44,11 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
         tvTitle.setText("列表");
         FakeAdapter fakeAdapter = new FakeAdapter(this);
         lvFake.setAdapter(fakeAdapter);
-        mList = new ArrayList();
-        Map<String, ?> allPassword = DataHelper.getAllPassword(this);
-        int i = 0;
-        for (Map.Entry<String, ?> entry : allPassword.entrySet()) {
-            if (entry.getValue() instanceof Set) {
-                mList.add(i, entry);
-                i++;
-            }
-            System.out.println("key= " + entry.getKey() + " and value= " + entry.getValue());
-        }
+        String allPassword = DataHelper.getPassword(this, "pwdArray");
+        JSONArray jsonArray = JSONArray.parseArray(allPassword);
+
+        PasswordService passwordService = new PasswordService(this);
+        mList = passwordService.getScrollData(0, (int) (passwordService.getCount()-1));
         fakeAdapter.notifyDataSetChanged(1, mList);
         lvFake.setOnItemClickListener(this);
     }
@@ -62,15 +56,15 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, DetailActivity.class);
-        Map.Entry<String, Map<String, String>> entry = (Map.Entry<String, Map<String, String>>) mList.get(position);
-        intent.putExtra("name", entry.getKey());
+       PasswordEntity password  = mList.get(position);
+        intent.putExtra("pid", password.getPid());
         startActivity(intent);
     }
 
     @OnClick(R.id.tv_right)
     public void onClick() {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra("name", "");
+        intent.putExtra("pid", "");
         startActivity(intent);
     }
 }
