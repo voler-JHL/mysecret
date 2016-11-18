@@ -29,10 +29,10 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 SystemClock.sleep(2500);
                 if ("1".equals(DataHelper.getStringSF(SplashActivity.this, "is_first"))) {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this, NewActivity.class));
                 } else {
                     DataHelper.SetStringSF(SplashActivity.this, "is_first", "1");
-                    startActivity(new Intent(SplashActivity.this, RegisterActivity.class));
+                    startActivity(new Intent(SplashActivity.this, NewActivity.class));
                 }
                 finish();
             }
