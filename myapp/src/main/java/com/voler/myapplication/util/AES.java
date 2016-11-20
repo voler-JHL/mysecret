@@ -1,5 +1,7 @@
 package com.voler.myapplication.util;
 
+import android.util.Base64;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -30,7 +32,7 @@ public class AES {
 
     static boolean isInited = false;
 
-    private static  void init() {
+    private static void init() {
         try {
             /**为指定算法生成一个 KeyGenerator 对象。
              *此类提供（对称）密钥生成器的功能。
@@ -164,9 +166,9 @@ public class AES {
 
     private static byte[] getKey(String password) {
         byte[] rByte = null;
-        if (password!=null) {
+        if (password != null) {
             rByte = password.getBytes();
-        }else{
+        } else {
             rByte = new byte[24];
         }
         return rByte;
@@ -174,6 +176,7 @@ public class AES {
 
     /**
      * 将二进制转换成16进制
+     *
      * @param buf
      * @return
      */
@@ -191,6 +194,7 @@ public class AES {
 
     /**
      * 将16进制转换为二进制
+     *
      * @param hexStr
      * @return
      */
@@ -208,33 +212,37 @@ public class AES {
     }
 
     //注意: 这里的password(秘钥必须是16位的)
-    private static final String keyBytes = "abcdefgabcdefg12";
+    private static String keyBytes = "0123456789abcdef";
+
+    public static void setKey(String key) {
+        keyBytes = key;
+    }
 
     /**
-     *加密
+     * 加密
      */
-    public static String encode(String content){
+    public static String encode(String content) {
         //加密之后的字节数组,转成16进制的字符串形式输出
         return parseByte2HexStr(encrypt(content, keyBytes));
     }
 
     /**
-     *解密
+     * 解密
      */
-    public static String decode(String content){
+    public static String decode(String content) {
         //解密之前,先将输入的字符串按照16进制转成二进制的字节数组,作为待解密的内容输入
         byte[] b = decrypt(parseHexStr2Byte(content), keyBytes);
         return new String(b);
     }
 
     //测试用例
-    public static void test1(){
+    public static void test1() {
         String content = "hello abcdefggsdfasdfasdf";
-        String pStr = encode(content );
-        System.out.println("加密前："+content);
+        String pStr = encode(content);
+        System.out.println("加密前：" + content);
         System.out.println("加密后:" + pStr);
 
         String postStr = decode(pStr);
-        System.out.println("解密后："+ postStr );
+        System.out.println("解密后：" + postStr);
     }
 }

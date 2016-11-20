@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -7,13 +7,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="28px"
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:text="设置初始密码"
-        android:textSize="26sp" />
+        android:textColor="@color/black_c"
+        android:textSize="48px" />
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_centerInParent="true"
@@ -27,10 +28,10 @@
             android:layout_centerInParent="true"
             android:hint="最长不超过32位"
             android:inputType="textPassword"
-            android:padding="25dp"
-            android:textColor="@color/black"
             android:maxLength="32"
-            android:textColorHint="@color/gray_line" />
+            android:padding="50px"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <EditText
             android:id="@+id/et_input_password2"
@@ -39,13 +40,13 @@
             android:layout_centerInParent="true"
             android:hint="再次输入密码"
             android:inputType="textPassword"
-            android:padding="25dp"
             android:maxLength="32"
+            android:padding="50px"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray_line" />
-    </LinearLayout>
+            android:textColorHint="@color/gray" />
+    </com.zhy.autolayout.AutoLinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="right"
@@ -56,10 +57,13 @@
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/blue"
-            android:padding="14dp"
+            android:background="@drawable/button_blue"
+            android:paddingBottom="26px"
+            android:paddingLeft="38px"
+            android:paddingRight="38px"
+            android:paddingTop="26px"
             android:text="进入主页"
             android:textColor="@color/white"
             android:textSize="22sp" />
-    </LinearLayout>
-</LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

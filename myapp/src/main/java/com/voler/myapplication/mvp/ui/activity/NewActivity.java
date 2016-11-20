@@ -1,5 +1,6 @@
 package com.voler.myapplication.mvp.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,6 +39,13 @@ public class NewActivity extends AppCompatActivity {
         iv2 = (ImageView) findViewById(R.id.iv2);
         iv3 = (ImageView) findViewById(R.id.iv3);
         bt_start = (Button) findViewById(R.id.bt_start);
+        bt_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NewActivity.this, RegisterActivity.class));
+                finish();
+            }
+        });
     }
 
     @Override
@@ -126,17 +134,17 @@ public class NewActivity extends AppCompatActivity {
             iv2.setImageResource(R.drawable.circle_blue);
             iv3.setImageResource(R.drawable.circle_blue);
             if (position == 0) {
-                iv1.setImageResource(R.drawable.circle_accent);
+                iv1.setImageResource(R.drawable.circle_white);
                 fragment1.startVideo();
                 fragment2.pauseVideo();
                 fragment3.pauseVideo();
             } else if (position == 1) {
-                iv2.setImageResource(R.drawable.circle_accent);
+                iv2.setImageResource(R.drawable.circle_white);
                 fragment1.pauseVideo();
                 fragment2.startVideo();
                 fragment3.pauseVideo();
             } else {
-                iv3.setImageResource(R.drawable.circle_accent);
+                iv3.setImageResource(R.drawable.circle_white);
                 fragment1.pauseVideo();
                 fragment2.pauseVideo();
                 fragment3.startVideo();

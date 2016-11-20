@@ -34,7 +34,9 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
     ListView lvFake;
     @Bind(R.id.tv_title)
     TextView tvTitle;
-    private  List<PasswordEntity> mList = new ArrayList();
+    private List<PasswordEntity> mList = new ArrayList();
+    private PasswordService passwordService;
+    private FakeAdapter fakeAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,29 +44,37 @@ public class RealMainActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.activity_real_main);
         ButterKnife.bind(this);
         tvTitle.setText("列表");
-        FakeAdapter fakeAdapter = new FakeAdapter(this);
+        fakeAdapter = new FakeAdapter(this);
         lvFake.setAdapter(fakeAdapter);
-        String allPassword = DataHelper.getPassword(this, "pwdArray");
-        JSONArray jsonArray = JSONArray.parseArray(allPassword);
 
-        PasswordService passwordService = new PasswordService(this);
-        mList = passwordService.getScrollData(0, (int) (passwordService.getCount()-1));
-        fakeAdapter.notifyDataSetChanged(1, mList);
+        passwordService = new PasswordService(this);
+        mList = passwordService.getScrollData(0, (int) (passwordService.getCount()));
+        fakeAdapter.notifyDataSetChanged(0, mList);
         lvFake.setOnItemClickListener(this);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, DetailActivity.class);
-       PasswordEntity password  = mList.get(position);
+        PasswordEntity password = mList.get(position);
         intent.putExtra("pid", password.getPid());
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     @OnClick(R.id.tv_right)
     public void onClick() {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra("pid", "");
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            mList = passwordService.getScrollData(0, (int) (passwordService.getCount()));
+            fakeAdapter.notifyDataSetChanged(0, mList);
+        }
+    }
+
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import com.jess.arms.base.BaseApplication;
 import com.jess.arms.http.GlobeHttpHandler;
 import com.jess.arms.utils.UiUtils;
+import com.voler.myapplication.db.PasswordService;
 import com.voler.myapplication.di.component.AppComponent;
 import com.voler.myapplication.di.component.DaggerAppComponent;
 import com.voler.myapplication.di.module.CacheModule;
@@ -27,7 +28,6 @@ import timber.log.Timber;
  */
 public class WEApplication extends BaseApplication {
     private AppComponent mAppComponent;
-//    private static PasswordService passwordService=new PasswordService(this);
 
     @Override
     public void onCreate() {

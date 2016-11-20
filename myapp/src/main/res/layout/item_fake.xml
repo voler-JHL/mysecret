@@ -11,7 +11,8 @@
         android:layout_margin="20px"
         android:maxLength="1"
         android:gravity="center"
-        android:textSize="32px"
+        android:textSize="60px"
+        android:text="寒"
         android:background="@drawable/background_rotate_blue"/>
 
     <TextView
@@ -20,7 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="20px"
         android:layout_toRightOf="@id/tv_name"
-        android:text="名字" />
+        android:textColor="@color/black"
+        android:text="账号" />
 
     <TextView
         android:id="@+id/tv_password"
@@ -29,5 +31,6 @@
         android:layout_below="@id/tv_account"
         android:layout_margin="20px"
         android:layout_toRightOf="@id/tv_name"
+        android:textColor="@color/gray"
         android:text="密码" />
 </com.zhy.autolayout.AutoRelativeLayout>

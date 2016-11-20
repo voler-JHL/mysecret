@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.UiUtils;
 import com.voler.myapplication.R;
+import com.voler.myapplication.util.AES;
 import com.voler.myapplication.util.StringUtil;
 
 import butterknife.Bind;
@@ -48,10 +49,13 @@ public class RegisterActivity extends AppCompatActivity {
         }else if (!pd1.equals(pd2)){
             UiUtils.makeText("两次输入的密码不一致");
         }else {
-            String myPassword = StringUtil.sha2(StringUtil.sha2(pd1) + sha2(pd1 + StringUtil.salt));
+            String myPassword = StringUtil.sha2(StringUtil.sha2(pd1+StringUtil.sha2(pd1)) + sha2(pd1 + StringUtil.salt));
             DataHelper.SetStringSF(this,"password",myPassword);
+            DataHelper.SetStringSF(this, "is_set_password", "1");
+            AES.setKey(StringUtil.sha2(myPassword+StringUtil.sha2(myPassword)+StringUtil.salt).substring(0,15)+"0");
             Intent intent=new Intent(this,RealMainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 }

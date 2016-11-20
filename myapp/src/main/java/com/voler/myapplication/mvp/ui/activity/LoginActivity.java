@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.jess.arms.utils.DataHelper;
 import com.jess.arms.utils.UiUtils;
 import com.voler.myapplication.R;
+import com.voler.myapplication.util.AES;
 import com.voler.myapplication.util.StringUtil;
 
 import butterknife.Bind;
@@ -43,10 +44,12 @@ public class LoginActivity extends AppCompatActivity {
     @OnClick(R.id.tv_login)
     public void onClick() {
         String password = etPassword.getText().toString().trim();
-        String myPassword = StringUtil.sha2(StringUtil.sha2(password) + sha2(password + StringUtil.salt));
+        String myPassword = StringUtil.sha2(StringUtil.sha2(password+StringUtil.sha2(password)) + sha2(password + StringUtil.salt));
         if (myPassword.equals(DataHelper.getStringSF(this, "password"))) {
             Intent intent = new Intent(this, RealMainActivity.class);
             startActivity(intent);
+            AES.setKey(StringUtil.sha2(password+StringUtil.sha2(password)+StringUtil.salt).substring(0,15)+"");
+            finish();
         }else {
             Toast.makeText(this,"密码错误",Toast.LENGTH_SHORT).show();
         }

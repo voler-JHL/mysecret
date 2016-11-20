@@ -20,8 +20,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_margin="15px"
-        android:background="@color/blue"
-        android:padding="12px"
-        android:text="新增"
+        android:background="@drawable/button_blue"
+        android:paddingBottom="12px"
+        android:paddingLeft="26px"
+        android:paddingRight="26px"
+        android:paddingTop="12px"
+        android:text="新 增"
         android:textColor="@color/white" />
 </com.zhy.autolayout.AutoRelativeLayout>

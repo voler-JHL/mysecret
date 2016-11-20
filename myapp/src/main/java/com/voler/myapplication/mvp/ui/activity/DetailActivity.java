@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.jess.arms.utils.DataHelper;
 import com.voler.myapplication.R;
+import com.voler.myapplication.app.WEApplication;
 import com.voler.myapplication.db.PasswordService;
 import com.voler.myapplication.listener.OnActionViewClickListener;
 import com.voler.myapplication.mvp.model.entity.PasswordEntity;
@@ -33,7 +34,8 @@ import static android.R.attr.password;
 import static android.R.id.list;
 
 /**
- * 妈妈生活圈
+ * 妈妈生活圈yd
+ * 妈妈生活圈y
  * 三尺春光驱我寒，一生戎马为长安 -- 韩经录
  * Created by voler on 2016/8/26.
  */
@@ -54,6 +56,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private String pid;
     private boolean isEdit = false;
+    private PasswordService passwordService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,12 +65,12 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         tvTitle.setText("详情");
         tvRight.setText("删除");
+        passwordService = new PasswordService(this);
         Bundle extras = getIntent().getExtras();
         pid = extras.getString("pid");
         if (pid == null || "".equals(pid)) {
             setCanEdit();
         } else {
-            PasswordService passwordService =  new PasswordService(this);
             PasswordEntity passwordEntity = passwordService.find(pid);
             etName.setText(passwordEntity.getName());
             etAccount.setText(passwordEntity.getAccount());
@@ -102,42 +105,33 @@ public class DetailActivity extends AppCompatActivity {
         etName.setEnabled(true);
         etAccount.setEnabled(true);
         tvRight.setVisibility(View.GONE);
-        tvUpdate.setText("完成");
+        tvUpdate.setText("完 成");
         isEdit = true;
-    }
-
-    private void setNotEdit() {
-        etPwd.setEnabled(false);
-        etName.setEnabled(false);
-        etAccount.setEnabled(false);
-        tvRight.setVisibility(View.VISIBLE);
-        tvUpdate.setText("修改");
-        isEdit = false;
     }
 
 
     @OnClick({R.id.tv_right, R.id.tv_update})
     public void onClick(View view) {
-        Toast.makeText(this, "nfidjasf", Toast.LENGTH_SHORT).show();
         switch (view.getId()) {
             case R.id.tv_right:
-
-                DataHelper.removePassword(this, mName);
+                passwordService.delete(pid);
+                finish();
                 break;
             case R.id.tv_update:
                 if (isEdit) {
-                    setNotEdit();
-                    String password = etPwd.getText().toString().trim();
+                    String password = AES.encode(etPwd.getText().toString().trim());
                     String name = etName.getText().toString().trim();
                     String account = etAccount.getText().toString().trim();
-                    Set<String> set = new HashSet<>();
-                    set.add(account);
-                    set.add(AES.encode(password));
-                    DataHelper.setPassword(this, name, set);
+                    PasswordEntity passwordEntity = new PasswordEntity(pid, name, account, password);
+                    if (pid == null || "".equals(pid)) {
+                        passwordService.save(passwordEntity);
+                    } else {
+                        passwordService.update(passwordEntity);
+                    }
+                    finish();
                 } else {
                     setCanEdit();
                 }
-                Toast.makeText(this, "nfidjasf", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

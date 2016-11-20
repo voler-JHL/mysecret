@@ -9,11 +9,13 @@ import com.voler.myapplication.mvp.model.entity.PasswordEntity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Singleton;
+
 /**
  * 三尺春光驱我寒，一生戎马为长安 -- 韩经录
  * Created by voler on 2016/11/18.
  */
-
+@Singleton
 public class PasswordService {
 
     private DBOpenHelper dbOpenHelper;
@@ -30,7 +32,7 @@ public class PasswordService {
 
     public void update(PasswordEntity password){
         SQLiteDatabase db = dbOpenHelper.getWritableDatabase();
-        db.execSQL("update password set name=?,account=?,password=? where pid=?", new Object[]{password.getName(),password.getName(),password.getPwd(),password.getPid()});
+        db.execSQL("update password set name=?,account=?,pwd=? where pid=?", new Object[]{password.getName(),password.getAccount(),password.getPwd(),password.getPid()});
     }
 
     public void delete(String pid){
@@ -70,7 +72,7 @@ public class PasswordService {
 
     public long getCount() {
         SQLiteDatabase db = dbOpenHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select count(*) from person", null);
+        Cursor cursor = db.rawQuery("select count(*) from password", null);
         cursor.moveToFirst();
         return cursor.getLong(0);
     }
