@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,7 +49,9 @@ public class LoginActivity extends AppCompatActivity {
         if (myPassword.equals(DataHelper.getStringSF(this, "password"))) {
             Intent intent = new Intent(this, RealMainActivity.class);
             startActivity(intent);
-            AES.setKey(StringUtil.sha2(password+StringUtil.sha2(password)+StringUtil.salt).substring(0,15)+"");
+            String key = StringUtil.sha2(password + StringUtil.sha2(password) + StringUtil.salt).substring(0, 15) + "0";
+            Log.i("----",key);
+            AES.setKey(key);
             finish();
         }else {
             Toast.makeText(this,"密码错误",Toast.LENGTH_SHORT).show();

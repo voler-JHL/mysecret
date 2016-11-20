@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -52,7 +53,9 @@ public class RegisterActivity extends AppCompatActivity {
             String myPassword = StringUtil.sha2(StringUtil.sha2(pd1+StringUtil.sha2(pd1)) + sha2(pd1 + StringUtil.salt));
             DataHelper.SetStringSF(this,"password",myPassword);
             DataHelper.SetStringSF(this, "is_set_password", "1");
-            AES.setKey(StringUtil.sha2(myPassword+StringUtil.sha2(myPassword)+StringUtil.salt).substring(0,15)+"0");
+            String key = StringUtil.sha2(pd1 + StringUtil.sha2(pd1) + StringUtil.salt).substring(0, 15) + "0";
+            Log.i("-----",key);
+            AES.setKey(key);
             Intent intent=new Intent(this,RealMainActivity.class);
             startActivity(intent);
             finish();

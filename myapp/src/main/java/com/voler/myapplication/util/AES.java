@@ -1,7 +1,5 @@
 package com.voler.myapplication.util;
 
-import android.util.Base64;
-
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.Key;
